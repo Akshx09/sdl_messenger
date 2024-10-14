@@ -1,0 +1,58 @@
+<!-- templates/messenger/upload.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Files</title>
+</head>
+<body>
+    <h1>Upload Student Data</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="marks_file">Marks File:</label>
+        <input type="file" name="marks_file" required><br><br>
+        
+        <label for="phone_file">Phone Numbers File:</label>
+        <input type="file" name="phone_file" required><br><br>
+
+        <button type="submit">Process Files</button>
+    </form>
+
+    <form method="POST" action="{% url 'generate_invalid_excel' %}">
+        {% csrf_token %}
+        <button type="submit">Generate Invalid Students Excel</button>
+    </form>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    {% if message %}
+        <p style="color:green;">{{ message }}</p>
+    {% endif %}
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marks Sender</title>
+</head>
+<body>
+    <h1>Upload Marks and Phone Numbers Files</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="marks_file">Marks File:</label>
+        <input type="file" name="marks_file" id="marks_file" required><br><br>
+
+        <label for="phone_file">Phone Numbers File:</label>
+        <input type="file" name="phone_file" id="phone_file" required><br><br>
+
+        <button type="submit" name="send_messages">Send WhatsApp Messages</button>
+        <button type="submit" name="generate_report">Generate Invalid Phone Report</button>
+    </form>
+</body>
+</html>
